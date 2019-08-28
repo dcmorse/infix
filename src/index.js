@@ -141,21 +141,31 @@ function Expression(arg) {
   const node = arg.node;
   if (nodeIsAtom(node))
     // I am a number
-    return <input type='text' value={node}/>;
+    return (<div class='row'>
+              <div class='column'>
+                <input type='text' value={node}/>
+                <div>hi</div>
+              </div>
+            </div>);
   else {
     // I'm a binary operator and two operands
-    const left = <Expression node={node.left}/>;
-    const right = <Expression node={node.right}/>;
-    return (<span class='complex-expression'>
-            {left}
-            <select value={node.op}>
-              <option>+</option>
-              <option>-</option>
-              <option>*</option>
-              <option>/</option>
-            </select>
-            {right}
-            </span>);
+    return (<div class='complex-expression row'>
+              <div class='column'>
+                <Expression node={node.left}/>
+              </div>
+              <div class='column'>
+                <select value={node.op}>
+                  <option>+</option>
+                  <option>-</option>
+                  <option>*</option>
+                  <option>/</option>
+                </select>
+                <div>hello</div>
+              </div>
+              <div class='column'>
+                <Expression node={node.right}/>
+              </div>
+            </div>);
   }
 }
 

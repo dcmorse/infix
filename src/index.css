@@ -7,6 +7,10 @@ input {
   max-width: 30px;
 }
 
+select {
+  max-width: 60px;
+}
+
 .complex-expression .complex-expression::before {
   content: "(";
   font-size: 225%;
@@ -24,4 +28,18 @@ input {
 .total {
   margin-top: 20px;
   font-size: 200%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }
