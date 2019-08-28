@@ -1,0 +1,27 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+input {
+  max-width: 30px;
+}
+
+.complex-expression .complex-expression::before {
+  content: "(";
+  font-size: 225%;
+}
+.complex-expression .complex-expression::after {
+  content: ")";
+  font-size: 225%;
+}
+
+.equals {
+  margin-top: 20px;
+  font-size: 200%;
+}
+
+.total {
+  margin-top: 20px;
+  font-size: 200%;
+}
