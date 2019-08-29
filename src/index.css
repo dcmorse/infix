@@ -4,11 +4,28 @@ body {
 }
 
 input {
-  max-width: 30px;
+  width: 40px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 select {
-  max-width: 60px;
+  width: 40px;
+  margin: 0 auto;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button-container a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #CCC;
+  color: #111;
+  border: solid black thin;
+  width: 40px;
+  margin-top: 10px;
 }
 
 .complex-expression .complex-expression::before {
@@ -23,6 +40,7 @@ select {
 .equals {
   margin-top: 20px;
   font-size: 200%;
+  text-align: center;
 }
 
 .total {

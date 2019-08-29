@@ -144,7 +144,7 @@ function Expression(arg) {
     return (<div class='row'>
               <div class='column'>
                 <input type='text' value={node}/>
-                <div>hi</div>
+                <div class='button-container'><a href="#">←◉→</a></div>
               </div>
             </div>);
   else {
@@ -160,7 +160,7 @@ function Expression(arg) {
                   <option>*</option>
                   <option>/</option>
                 </select>
-                <div>hello</div>
+                <div class='button-container'><a href="#">→○←</a></div>
               </div>
               <div class='column'>
                 <Expression node={node.right}/>
