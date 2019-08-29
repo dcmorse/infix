@@ -18,7 +18,7 @@ class Expression extends React.Component {
       return (<div className='row'>
                 <div className='column'>
                   <input type='number' value={exp.value} onChange={(e) => this.onChange(e)}/>
-                  <div className='button-container'><a href="#">←◉→</a></div>
+                  <div className='button-container'><button>←◉→</button></div>
                 </div>
               </div>);
     else {
@@ -34,7 +34,7 @@ class Expression extends React.Component {
                     <option>*</option>
                     <option>/</option>
                   </select>
-                  <div className='button-container'><a href="#">→○←</a></div>
+                  <div className='button-container'><button>→○←</button></div>
                 </div>
                 <div className='column'>
                   <Expression exp={exp.right} rootExpSub={this.props.rootExpSub} />
