@@ -81,4 +81,4 @@ class BinaryExp extends Exp {
   }
 }
 
-export default Exp;
+export { Exp, BinaryExp };

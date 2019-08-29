@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Exp from './exp';
+import { Exp, BinaryExp } from './exp';
 
 function ResultDisplay({value}) {
   return <div className='equals'>equals<br/><div className='total'>{value}</div></div>;
@@ -17,7 +17,7 @@ class Expression extends React.Component {
       // I am a number
       return (<div className='row'>
                 <div className='column'>
-                  <input type='number' value={exp.value} onChange={(e) => this.onChange(e)}/>
+                  <input type='number' value={exp.value} onChange={(e) => this.onAtomChange(e)}/>
                   <div className='button-container'><button onClick={()=>this.toBinaryExp()}>←◉→</button></div>
                 </div>
               </div>);
@@ -28,7 +28,7 @@ class Expression extends React.Component {
                   <Expression exp={exp.left} rootExpSub={this.props.rootExpSub} />
                 </div>
                 <div className='column'>
-                  <select value={exp.op}>
+                  <select value={exp.op} onChange={(e)=>this.onBinaryOpChange(e)}>
                     <option>+</option>
                     <option>-</option>
                     <option>*</option>
@@ -43,7 +43,7 @@ class Expression extends React.Component {
     }
   }
 
-  onChange(event) {
+  onAtomChange(event) {
     const n = Number(event.target.value);
     if (n !== NaN)
       this.props.rootExpSub(this.props.exp, Exp.build(n));
@@ -56,12 +56,17 @@ class Expression extends React.Component {
   toAtomicExp() {
     this.props.rootExpSub(this.props.exp, Exp.build(this.props.exp.value));
   }
+
+  onBinaryOpChange(e) {
+    const exp = this.props.exp;
+    this.props.rootExpSub(this.props.exp, new BinaryExp({left: exp.left, op: e.target.value, right: exp.right}));
+  }
 }
 
 class Calculator extends React.Component {
   constructor(props) {
     super();
-    this.state = {exp: Exp.build({left: 6, op: '+', right: {left: 5, op: '-', right: 3}})};
+    this.state = {exp: Exp.build(0)};
   }
   rootExpSub(oldExp, newExp) {
     this.setState({exp: this.state.exp.sub(oldExp, newExp)});
