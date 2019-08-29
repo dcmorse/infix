@@ -34,7 +34,7 @@ class Expression extends React.Component {
                     <option>*</option>
                     <option>/</option>
                   </select>
-                  <div className='button-container'><button>→○←</button></div>
+                  <div className='button-container'><button onClick={()=>this.toAtomicExp()}>→○←</button></div>
                 </div>
                 <div className='column'>
                   <Expression exp={exp.right} rootExpSub={this.props.rootExpSub} />
@@ -51,6 +51,10 @@ class Expression extends React.Component {
 
   toBinaryExp() {
     this.props.rootExpSub(this.props.exp, Exp.build({left: this.props.exp.value, op: '+', right: 0}));
+  }
+
+  toAtomicExp() {
+    this.props.rootExpSub(this.props.exp, Exp.build(this.props.exp.value));
   }
 }
 
