@@ -169,13 +169,15 @@ function Expression(arg) {
   }
 }
 
-function Calculator(props) {
-  const node = {left: 6, op: '+', right: {left: 5, op: '-', right: 3}};
-  return (<div>
-            <Expression node={node} />
-            <br/>
-            <ResultDisplay value={8}/>
-          </div>);
+class Calculator extends React.Component {
+  render() {
+    const node = {left: 6, op: '+', right: {left: 5, op: '-', right: 3}};
+    return (<div>
+              <Expression node={node} />
+              <br/>
+              <ResultDisplay value={8}/>
+            </div>);
+  }
 }
 
 // ========================================
