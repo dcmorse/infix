@@ -1,6 +1,8 @@
 # Infix
 a calculator app built to learn React, by Dave Morse
 
+![alt text](https://github.com/dcmorse/infix/blob/master/screenshot.png "screenshot of 10+(3*3)")
+
 ## Development
 
 ```
