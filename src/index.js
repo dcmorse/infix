@@ -50,7 +50,8 @@ class Expression extends React.Component {
   }
 
   toBinaryExp() {
-    this.props.rootExpSub(this.props.exp, Exp.build({left: this.props.exp.value, op: '+', right: 0}));
+    const half = this.props.exp.value / 2;
+    this.props.rootExpSub(this.props.exp, Exp.build({left: Math.ceil(half), op: '+', right: Math.floor(half)}));
   }
 
   toAtomicExp() {
