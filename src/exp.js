@@ -9,11 +9,16 @@ class Exp {
     const e = expDescriptor;
     if (typeof e === 'number')
       return new AtomicExp(e);
-    else if (e.left && e.op && e.right)
+    else if (smellsLikeExpDescriptor(e.left) && e.op && smellsLikeExpDescriptor(e.right))
       return new BinaryExp({left: this.build(e.left), op: e.op, right: this.build(e.right)});
     else
       throw new Error("uh-oh, I got something unexpected as my argument: "+JSON.stringify(e));
   }
+}
+
+// this private helper deals with 0 being an ExpDescriptor that is also falsey.
+function smellsLikeExpDescriptor(expDescriptor) {
+  return !!(0===expDescriptor || expDescriptor);
 }
 
 class AtomicExp extends Exp {

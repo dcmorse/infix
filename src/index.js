@@ -18,7 +18,7 @@ class Expression extends React.Component {
       return (<div className='row'>
                 <div className='column'>
                   <input type='number' value={exp.value} onChange={(e) => this.onChange(e)}/>
-                  <div className='button-container'><button>←◉→</button></div>
+                  <div className='button-container'><button onClick={()=>this.toBinaryExp()}>←◉→</button></div>
                 </div>
               </div>);
     else {
@@ -47,6 +47,10 @@ class Expression extends React.Component {
     const n = Number(event.target.value);
     if (n !== NaN)
       this.props.rootExpSub(this.props.exp, Exp.build(n));
+  }
+
+  toBinaryExp() {
+    this.props.rootExpSub(this.props.exp, Exp.build({left: this.props.exp.value, op: '+', right: 0}));
   }
 }
 
