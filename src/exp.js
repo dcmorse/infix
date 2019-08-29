@@ -2,6 +2,8 @@ class Exp {
   // this "interface" implements
   // get value => number
   // get isAtom => boolean
+  // sub(oldExp, newExp) => Exp
+
 
   static build(expDescriptor) {
     const e = expDescriptor;
@@ -10,7 +12,7 @@ class Exp {
     else if (e.left && e.op && e.right)
       return new BinaryExp({left: this.build(e.left), op: e.op, right: this.build(e.right)});
     else
-      throw new Error("uh-oh, I got something unexpected as my argument: "+e);
+      throw new Error("uh-oh, I got something unexpected as my argument: "+JSON.stringify(e));
   }
 }
 
@@ -25,6 +27,10 @@ class AtomicExp extends Exp {
 
   get isAtom() {
     return true;
+  }
+
+  sub(oldExp, newExp) {
+    return (this === oldExp) ? newExp : this;
   }
 }
 
@@ -57,6 +63,17 @@ class BinaryExp extends Exp {
       throw new Error("Surprising new binary operator discovered at runtime!: " + this.op);
     }
   }
+
+  sub(oldExp, newExp) {
+    if (this === oldExp)
+      return newExp;
+    const newLeft = this.left.sub(oldExp, newExp);
+    const newRight = this.right.sub(oldExp, newExp);
+    if (this.left === newLeft && this.right === newRight)
+      return this;
+    else
+      return new BinaryExp({left: newLeft, op: this.op, right: newRight});
+  }
 }
 
-export { Exp, AtomicExp, BinaryExp };
+export default Exp;
