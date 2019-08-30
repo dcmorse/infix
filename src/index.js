@@ -66,15 +66,17 @@ class Expression extends React.PureComponent {
   }
 }
 
-class Calculator extends React.Component {
+class Calculator extends React.PureComponent {
   constructor(props) {
     super();
     this.state = {exp: Exp.build(0)};
     this.rootExpSub = this.rootExpSub.bind(this);
   }
+
   rootExpSub(oldExp, newExp) {
     this.setState({exp: this.state.exp.sub(oldExp, newExp)});
   }
+
   render() {
     const exp = this.state.exp;
     return (<div>
