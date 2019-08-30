@@ -45,7 +45,7 @@ class Expression extends React.PureComponent {
 
   onAtomChange(event) {
     const n = Number(event.target.value);
-    if (n !== NaN)
+    if (!Number.isNaN(n))
       this.props.rootExpSub(this.props.exp, Exp.build(n));
   }
 
