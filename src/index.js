@@ -9,7 +9,7 @@ function ResultDisplay({value}) {
   return <div className='equals'>equals<br/><div className='total'>{value}</div></div>;
 }
 
-class Expression extends React.Component {
+class Expression extends React.PureComponent {
 
   render() {
     const exp = this.props.exp;
@@ -70,6 +70,7 @@ class Calculator extends React.Component {
   constructor(props) {
     super();
     this.state = {exp: Exp.build(0)};
+    this.rootExpSub = this.rootExpSub.bind(this);
   }
   rootExpSub(oldExp, newExp) {
     this.setState({exp: this.state.exp.sub(oldExp, newExp)});
@@ -77,7 +78,7 @@ class Calculator extends React.Component {
   render() {
     const exp = this.state.exp;
     return (<div>
-              <Expression exp={exp} rootExpSub={(oldExp, newExp)=>this.rootExpSub(oldExp, newExp)} />
+              <Expression exp={exp} rootExpSub={this.rootExpSub} />
               <br/>
               <ResultDisplay value={exp.value}/>
             </div>);
