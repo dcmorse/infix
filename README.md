@@ -10,6 +10,23 @@ npm install
 npm start
 ```
 
+## Testing
+
+There is one cypress e2e test, which you can run interactively with 
+
+```
+npx cypress open
+```
+
+or non-interactively with
+
+```
+npx cypress run
+```
+
+
+## The End
+
 Below here are react tutorial instructions relating to build and deploy. I haven't checked that they work with the new code, though there is no reason to believe they woudln't. 
 
 ________________________________________________________________
